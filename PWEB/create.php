@@ -1,9 +1,6 @@
 <?php
 include 'dbconnect.php';
-$data_edit = mysqli_query($koneksi, "SELECT * FROM city WHERE ID = $ID");
-$result = mysqli_fetch_array($data_edit);
         
-        $ID = $_POST['ID'];
         $Name = $_POST['Name'];
         $CountryCode = $_POST['CountryCode'];
         $District = $_POST['District'];
@@ -11,10 +8,7 @@ $result = mysqli_fetch_array($data_edit);
 
 
     if(isset($_POST['submit'])){
-        mysqli_query($koneksi, "INSERT INTO city (Name,CountryCode,District,Population) VALUES
-        ('$Name', '$CountryCode', '$District', '$Population'");
-
-
+        $tess = mysqli_query($koneksi, "INSERT INTO city (Name,CountryCode,District,Population) VALUES ('$Name', '$CountryCode', '$District', '$Population')");
         if(mysqli_affected_rows($koneksi) >0){
                 echo "
                     <script>
@@ -43,7 +37,7 @@ $result = mysqli_fetch_array($data_edit);
 </head>
 <body>
     <div class="container">
-        <form action="" method="POST">
+        <form action="create.php" method="POST">
             <label class="form-group col-md-6" for="">ID</label>
             <input type="number" name="ID" class="form-control" placeholder="Input ID" required><br>
             <label class="form-group col-md-6" for="">Nama</label>
