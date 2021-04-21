@@ -9,6 +9,7 @@ include 'dbconnect.php';
 
     if(isset($_POST['submit'])){
         $tess = mysqli_query($koneksi, "INSERT INTO city (Name,CountryCode,District,Population) VALUES ('$Name', '$CountryCode', '$District', '$Population')");
+        var_dump($tess);
         if(mysqli_affected_rows($koneksi) >0){
                 echo "
                     <script>
@@ -38,8 +39,6 @@ include 'dbconnect.php';
 <body>
     <div class="container">
         <form action="create.php" method="POST">
-            <label class="form-group col-md-6" for="">ID</label>
-            <input type="number" name="ID" class="form-control" placeholder="Input ID" required><br>
             <label class="form-group col-md-6" for="">Nama</label>
             <input type="text" name="Name" class="form-control" placeholder="Input City Name" required><br>
             <label class="form-group col-md-6" for="">CountryCode</label>

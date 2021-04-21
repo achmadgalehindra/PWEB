@@ -21,12 +21,12 @@
         <br>
         <h2>Data kota di seluruh dunia</h2>
         <br>
-        <?php
-            include 'dbconnect.php';
-            $query = "SELECT ID FROM city ORDER BY ID";  
-            $query_run = mysqli_query($koneksi, $query);
-            $row = mysqli_num_rows($query_run);
-            echo '<h4> Jumlah Data : '.$row.'</h4>';
+        <?php 
+            $sql    ="SELECT * FROM city";
+            $hitung    =mysqli_query($koneksi,$sql);
+            $count    =mysqli_num_rows($hitung);
+            echo "<h4>Jumlah data = $count</h4>";
+
         ?>
         <br>
         <div class="b1"> 
@@ -37,8 +37,8 @@
         <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>No</th>
-                <th>City name</th>
+                <th>ID</th>
+                <th>City Name</th>
                 <th>Distric</th>
                 <th>Country Code</th>
                 <th>Population</th>
