@@ -1,6 +1,6 @@
 <?php
-require 'dbconnect.php';
-$data_edit = mysqli_query($koneksi, "SELECT * FROM city WHERE ID ='$_GET[ID]'");
+include 'dbconnect.php';
+$data_edit = mysqli_query($koneksi, "SELECT * FROM city WHERE ID = $_GET[ID]");
 $result = mysqli_fetch_array($data_edit);
 
     $ID = $_POST['ID'];
@@ -10,20 +10,20 @@ $result = mysqli_fetch_array($data_edit);
     $Population = $_POST['Population'];
     $cara = "UPDATE city SET Name = '$Name', CountryCode ='$CountryCode', District = '$District', Population = '$Population'
     WHERE ID = '$ID'";
-
+    
     if (isset($_POST['editt'])){
         mysqli_query($koneksi, $cara);
         if(mysqli_affected_rows($koneksi) >0){
             echo "
                 <script>
-                    alert('data berhasil ditambahkan');
+                    alert('data berhasil diubah');
                     document.location.href = 'index.php'
                 </script>
                 ";
         }else{
             echo "
                 <script>
-                    alert('data gagal ditambahkan');
+                    alert('data gagal diubah');
                     document.location.href = 'index.php'
                 </script>
                 ";
@@ -51,8 +51,8 @@ $result = mysqli_fetch_array($data_edit);
             <label class="form-group col-md-6" for="inputDistrict">District</label>
             <input type="text" name="District" class="form-control" id="inlineFormInput"  value="<?php echo $result['District'] ?>" required> <br>
             <label class="form-group col-md-6" for="inputPopulation">Population</label>
-            <input type="text" name="Population" class="form-control" id="inlineFormInput"  value="<?php echo $result['Population'] ?>" required> <br>
-            <button type = "submit" name = "editt" class ="btn btn-primary">Simpan</button>
+            <input type="number" name="Population" class="form-control" id="inlineFormInput"  value="<?php echo $result['Population'] ?>" required> <br>
+            <button type="submit" name="editt" class="btn btn-primary">Simpan</button>
         </form>
     </div>
 

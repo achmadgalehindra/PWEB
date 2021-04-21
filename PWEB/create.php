@@ -1,14 +1,20 @@
 <?php
-    require 'dbconnect.php';
+include 'dbconnect.php';
+$data_edit = mysqli_query($koneksi, "SELECT * FROM city WHERE ID = $ID");
+$result = mysqli_fetch_array($data_edit);
+        
+        $ID = $_POST['ID'];
+        $Name = $_POST['Name'];
+        $CountryCode = $_POST['CountryCode'];
+        $District = $_POST['District'];
+        $Population = $_POST['Population'];
+
 
     if(isset($_POST['submit'])){
-        mysqli_query($koneksi, "INSERT INTO city SET
-        ID = '$_POST[ID]',
-        Name = '$_POST[Name]',
-        CountryCode = '$_POST[CountryCode]',
-        District = '$_POST[District]',
-        Population = '$_POST[Population]'"
-        );
+        mysqli_query($koneksi, "INSERT INTO city (Name,CountryCode,District,Population) VALUES
+        ('$Name', '$CountryCode', '$District', '$Population'");
+
+
         if(mysqli_affected_rows($koneksi) >0){
                 echo "
                     <script>
@@ -39,7 +45,7 @@
     <div class="container">
         <form action="" method="POST">
             <label class="form-group col-md-6" for="">ID</label>
-            <input type="text" name="ID" class="form-control" placeholder="Input ID" required><br>
+            <input type="number" name="ID" class="form-control" placeholder="Input ID" required><br>
             <label class="form-group col-md-6" for="">Nama</label>
             <input type="text" name="Name" class="form-control" placeholder="Input City Name" required><br>
             <label class="form-group col-md-6" for="">CountryCode</label>
@@ -47,8 +53,8 @@
             <label class="form-group col-md-6" for="">District</label>
             <input type="text" name="District" class="form-control" placeholder="Input District" required><br>
             <label class="form-group col-md-6" for="">Population</label>
-            <input type="text" name="Population" class="form-control" placeholder="Input Population" required><br>
-            <button class ="btn btn-primary" type = "submit" name = "submit" class ="simpan">Simpan</button>
+            <input type="number" name="Population" class="form-control" placeholder="Input Population" required><br>
+            <button class="btn btn-primary" type="submit" name="submit" class="simpan">Simpan</button>
         </form>
     </div>
 
